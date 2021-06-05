@@ -1,26 +1,26 @@
 [
   {
-    "Type": "mobile",
+    "Type": 1,
     "Capacity": 3920.65,
     "FuelAmount": 2141.85
   },
   {
-    "Type": "stationary",
+    "Type": 0,
     "Capacity": 9917.71,
     "FuelAmount": 2516.38
   },
   {
-    "Type": "stationary",
+    "Type": 0,
     "Capacity": 7413.92,
     "FuelAmount": 1758.24
   },
   {
-    "Type": "stationary",
+    "Type": 0,
     "Capacity": 9872.46,
     "FuelAmount": 2249.18
   },
   {
-    "Type": "stationary",
+    "Type": 0,
     "Capacity": 3215.27,
     "FuelAmount": 2108.26
   }

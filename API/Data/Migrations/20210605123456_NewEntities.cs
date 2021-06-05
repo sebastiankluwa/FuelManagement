@@ -53,7 +53,7 @@ namespace API.Data.Migrations
                     AppUserId = table.Column<int>(type: "INTEGER", nullable: false),
                     TankId = table.Column<int>(type: "INTEGER", nullable: false),
                     Mileage = table.Column<float>(type: "REAL", nullable: false),
-                    FuelAmount = table.Column<int>(type: "INTEGER", nullable: false)
+                    FuelAmount = table.Column<float>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {

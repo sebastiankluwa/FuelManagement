@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210604234215_NewEntities")]
+    [Migration("20210605123456_NewEntities")]
     partial class NewEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,7 +43,7 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.Refueling", b =>
                 {
-                    b.Property<int?>("VehicleId")
+                    b.Property<int>("VehicleId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("RefuelDate")
@@ -52,8 +52,8 @@ namespace API.Data.Migrations
                     b.Property<int>("AppUserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("FuelAmount")
-                        .HasColumnType("INTEGER");
+                    b.Property<float>("FuelAmount")
+                        .HasColumnType("REAL");
 
                     b.Property<float>("Mileage")
                         .HasColumnType("REAL");

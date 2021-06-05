@@ -21,6 +21,6 @@ namespace API.Entities
 
         public float Mileage { get; set; }
 
-        public int FuelAmount { get; set; }
+        public float FuelAmount { get; set; }
     }
 }

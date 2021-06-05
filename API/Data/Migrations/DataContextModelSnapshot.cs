@@ -41,7 +41,7 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.Refueling", b =>
                 {
-                    b.Property<int?>("VehicleId")
+                    b.Property<int>("VehicleId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("RefuelDate")
@@ -50,8 +50,8 @@ namespace API.Data.Migrations
                     b.Property<int>("AppUserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("FuelAmount")
-                        .HasColumnType("INTEGER");
+                    b.Property<float>("FuelAmount")
+                        .HasColumnType("REAL");
 
                     b.Property<float>("Mileage")
                         .HasColumnType("REAL");
