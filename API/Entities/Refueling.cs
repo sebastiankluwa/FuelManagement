@@ -11,7 +11,7 @@ namespace API.Entities
 
         public Vehicle Vehicle { get; set; }
 
-        public int? VehicleId { get; set; }
+        public int VehicleId { get; set; }
 
         public Tank Tank { get; set; }
 
