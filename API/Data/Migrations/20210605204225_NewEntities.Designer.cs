@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210605123456_NewEntities")]
+    [Migration("20210605204225_NewEntities")]
     partial class NewEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,11 +43,9 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.Refueling", b =>
                 {
-                    b.Property<int>("VehicleId")
+                    b.Property<int>("RefuelingId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("RefuelDate")
-                        .HasColumnType("TEXT");
 
                     b.Property<int>("AppUserId")
                         .HasColumnType("INTEGER");
@@ -58,14 +56,22 @@ namespace API.Data.Migrations
                     b.Property<float>("Mileage")
                         .HasColumnType("REAL");
 
+                    b.Property<DateTime>("RefuelDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("TankId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("VehicleId", "RefuelDate");
+                    b.Property<int>("VehicleId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("RefuelingId");
 
                     b.HasIndex("AppUserId");
 
                     b.HasIndex("TankId");
+
+                    b.HasIndex("VehicleId");
 
                     b.ToTable("Refuelings");
                 });

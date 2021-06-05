@@ -5,6 +5,7 @@ namespace API.Entities
 {
     public class Refueling
     {
+        public int RefuelingId { get; set; }
         public AppUser AppUser { get; set; }
 
         public int AppUserId { get; set; }

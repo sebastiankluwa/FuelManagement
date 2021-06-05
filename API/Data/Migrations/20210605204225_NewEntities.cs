@@ -48,16 +48,18 @@ namespace API.Data.Migrations
                 name: "Refuelings",
                 columns: table => new
                 {
-                    VehicleId = table.Column<int>(type: "INTEGER", nullable: false),
-                    RefuelDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    RefuelingId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     AppUserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    VehicleId = table.Column<int>(type: "INTEGER", nullable: false),
                     TankId = table.Column<int>(type: "INTEGER", nullable: false),
+                    RefuelDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Mileage = table.Column<float>(type: "REAL", nullable: false),
                     FuelAmount = table.Column<float>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Refuelings", x => new { x.VehicleId, x.RefuelDate });
+                    table.PrimaryKey("PK_Refuelings", x => x.RefuelingId);
                     table.ForeignKey(
                         name: "FK_Refuelings_Tanks_TankId",
                         column: x => x.TankId,
@@ -87,6 +89,11 @@ namespace API.Data.Migrations
                 name: "IX_Refuelings_TankId",
                 table: "Refuelings",
                 column: "TankId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Refuelings_VehicleId",
+                table: "Refuelings",
+                column: "VehicleId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

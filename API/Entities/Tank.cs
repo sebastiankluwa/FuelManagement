@@ -17,5 +17,7 @@ namespace API.Entities
         public float Capacity { get; set; }
 
         public float FuelAmount { get; set; }
+
+        //fillingDate
     }
 }

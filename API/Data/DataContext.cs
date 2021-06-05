@@ -20,9 +20,6 @@ namespace API.Data
             base.OnModelCreating(builder);
 
             builder.Entity<Refueling>()
-                .HasKey(k => new { k.VehicleId, k.RefuelDate });
-
-            builder.Entity<Refueling>()
                 .HasOne(p => p.Tank)
                 .WithMany(b => b.Refuelings)
                 .OnDelete(DeleteBehavior.Restrict);
