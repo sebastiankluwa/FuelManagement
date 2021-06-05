@@ -1,0 +1,142 @@
+[
+  {
+    "AppUserId": 0,
+    "VehicleId": 6,
+    "TankId": 1,
+    "Mileage": "19,118.60",
+    "FuelAmount": 298.73
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 0,
+    "TankId": 2,
+    "Mileage": "16,015.48",
+    "FuelAmount": 208.22
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 2,
+    "TankId": 3,
+    "Mileage": "16,134.75",
+    "FuelAmount": 189.01
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 10,
+    "TankId": 1,
+    "Mileage": "18,781.93",
+    "FuelAmount": 204
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 1,
+    "TankId": 0,
+    "Mileage": "18,141.14",
+    "FuelAmount": 250.73
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 6,
+    "TankId": 4,
+    "Mileage": "18,886.08",
+    "FuelAmount": 39.18
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 10,
+    "TankId": 0,
+    "Mileage": "19,017.20",
+    "FuelAmount": 200.12
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 9,
+    "TankId": 0,
+    "Mileage": "19,819.81",
+    "FuelAmount": 258.17
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 2,
+    "TankId": 2,
+    "Mileage": "18,298.30",
+    "FuelAmount": 50.86
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 6,
+    "TankId": 0,
+    "Mileage": "18,978.76",
+    "FuelAmount": 202.82
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 2,
+    "TankId": 0,
+    "Mileage": "18,458.52",
+    "FuelAmount": 56.83
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 2,
+    "TankId": 2,
+    "Mileage": "17,547.29",
+    "FuelAmount": 198.06
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 9,
+    "TankId": 1,
+    "Mileage": "18,578.93",
+    "FuelAmount": 299.73
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 4,
+    "TankId": 0,
+    "Mileage": "18,955.05",
+    "FuelAmount": 92.24
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 0,
+    "TankId": 4,
+    "Mileage": "16,645.35",
+    "FuelAmount": 23.11
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 1,
+    "TankId": 2,
+    "Mileage": "17,545.37",
+    "FuelAmount": 108.91
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 9,
+    "TankId": 1,
+    "Mileage": "18,460.06",
+    "FuelAmount": 164.68
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 1,
+    "TankId": 0,
+    "Mileage": "18,466.68",
+    "FuelAmount": 143.87
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 1,
+    "TankId": 3,
+    "Mileage": "16,552.55",
+    "FuelAmount": 120.24
+  },
+  {
+    "AppUserId": 0,
+    "VehicleId": 7,
+    "TankId": 2,
+    "Mileage": "18,936.33",
+    "FuelAmount": 145.93
+  }
+]
