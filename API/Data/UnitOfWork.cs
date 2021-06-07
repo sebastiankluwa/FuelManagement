@@ -15,6 +15,7 @@ namespace API.Data
         public IRefuelingRepository RefuelingRepository => new RefuelingRepository(context);
         public ITankRepository TankRepository => new TankRepository(context);
         public IVehicleRepository VehicleRepository => new VehicleRepository(context);
+        public IUserRepository UserRepository => new UserRepository(context);
 
         public async Task<bool> Complete()
         {

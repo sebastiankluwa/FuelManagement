@@ -7,6 +7,7 @@ namespace API.Interfaces
         IRefuelingRepository RefuelingRepository {get;}
         IVehicleRepository VehicleRepository {get;}
         ITankRepository TankRepository {get;}
+        IUserRepository UserRepository {get;}
         Task<bool> Complete();
         bool hasChanges();
     }
