@@ -41,7 +41,21 @@ namespace API.Controllers
 
             _unitOfWork.RefuelingRepository.AddRefueling(refueling);
 
-            if(await _unitOfWork.Complete()) return Ok(refueling);
+            if(await _unitOfWork.Complete()) 
+            {
+                var refuelingDto = new RefuelingDto
+                {
+                    RefuelingId = refueling.RefuelingId,
+                    AppUserId = refueling.AppUserId,
+                    VehicleId = refueling.VehicleId,
+                    TankId = refueling.TankId,
+                    RefuelDate = refueling.RefuelDate,
+                    Mileage = refueling.Mileage,
+                    FuelAmount = refueling.FuelAmount
+                };
+
+                return Ok(refuelingDto);
+            }
 
             return BadRequest("Failed to refuel!");
         }
