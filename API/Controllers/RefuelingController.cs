@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Data;
@@ -17,7 +18,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Refueling>> AddRefueling(AddRefuelingDto addRefuelingDto)
+        public async Task<ActionResult<RefuelingDto>> AddRefueling(AddRefuelingDto addRefuelingDto)
         {
             var username = User.FindFirst(ClaimTypes.Name)?.Value;
 
@@ -58,6 +59,18 @@ namespace API.Controllers
             }
 
             return BadRequest("Failed to refuel!");
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<RefuelingDto>>> GetRefuelingsForUser()
+        {
+            var username = User.FindFirst(ClaimTypes.Name)?.Value;
+
+            var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
+
+            var refuelings = await _unitOfWork.RefuelingRepository.GetRefuelingByUserIdAsync(user.Id);
+
+            return Ok(refuelings);
         }
     }
 }

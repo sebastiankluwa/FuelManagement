@@ -10,6 +10,8 @@ namespace API.Interfaces
 
         Task<Refueling> GetRefuelingByIdAsync(int id);
 
+        Task<IEnumerable<Refueling>> GetRefuelingByUserIdAsync(int id);
+
         void AddRefueling(Refueling refueling);
 
         void RemoveRefueling(int id);

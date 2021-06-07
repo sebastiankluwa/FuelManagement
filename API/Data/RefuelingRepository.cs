@@ -21,6 +21,11 @@ namespace API.Data
             return await context.Refuelings.FindAsync(id);
         }
 
+        public async Task<IEnumerable<Refueling>> GetRefuelingByUserIdAsync(int id)
+        {
+            return await context.Refuelings.ToListAsync();
+        }
+
         public async Task<IEnumerable<Refueling>> GetRefuelingsAsync()
         {
             return await context.Refuelings.ToListAsync();
