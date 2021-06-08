@@ -63,14 +63,23 @@ namespace API.Controllers
             return BadRequest("Failed to refuel!");
         }
 
-        [HttpGet("{username}")]
+        [HttpGet("user/{username}")]
         public async Task<ActionResult<IEnumerable<RefuelingDto>>> GetRefuelingsByUser(string username)
         {
             var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
 
+            if(user == null) return BadRequest("User not found");
+
             var refuelings = await _unitOfWork.RefuelingRepository.GetRefuelingsByUserIdAsync(user.Id);
 
             return Ok(refuelings);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Refueling>> GetRefuelingById(int id)
+        {
+
+            return await _unitOfWork.RefuelingRepository.GetRefuelingByIdAsync(id);
         }
 
         [HttpGet]
