@@ -4,7 +4,6 @@ namespace API.DTOs
 {
     public class AddRefuelingDto
     {
-        public int RefuelingId { get; set; }
 
         public int VehicleId { get; set; }
 

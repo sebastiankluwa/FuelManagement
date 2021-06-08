@@ -26,12 +26,14 @@ namespace API.Data
             return await context.Refuelings
                 .Where(r => r.AppUserId == id)
                 .OrderBy(r => r.RefuelDate)
-                .ToListAsync();
+                .ToListAsync();//project to refuelingdto (mapper)
         }
 
         public async Task<IEnumerable<Refueling>> GetRefuelingsAsync()
         {
-            return await context.Refuelings.ToListAsync();
+            return await context.Refuelings
+                .OrderBy(r => r.RefuelDate)
+                .ToListAsync();
         }
 
         public void AddRefueling(Refueling refueling)

@@ -5,10 +5,12 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [Authorize]
     public class RefuelingController : BaseApiController
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -62,13 +64,34 @@ namespace API.Controllers
         }
 
         [HttpGet("{username}")]
-        public async Task<ActionResult<IEnumerable<RefuelingDto>>> GetRefuelingsForUser(string username)
+        public async Task<ActionResult<IEnumerable<RefuelingDto>>> GetRefuelingsByUser(string username)
         {
             var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
 
             var refuelings = await _unitOfWork.RefuelingRepository.GetRefuelingsByUserIdAsync(user.Id);
 
             return Ok(refuelings);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<RefuelingDto>>> GetRefuelings()
+        {
+            var refuelings = await _unitOfWork.RefuelingRepository.GetRefuelingsAsync();
+
+            return Ok(refuelings);
+        }
+
+        [HttpDelete("{refuelingId}")]
+        public async Task<ActionResult> RemoveRefueling(int refuelingId)
+        {
+            
+            _unitOfWork.RefuelingRepository.RemoveRefueling(refuelingId);
+
+            if (await _unitOfWork.Complete()) return Ok();
+
+            return BadRequest("Failed to delete the refueling entry");
+
+
         }
     }
 }
