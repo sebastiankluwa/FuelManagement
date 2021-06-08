@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace API.Data
         {
             return await context.Refuelings
                 .Where(r => r.TankId == id
-                    
+                    && DateTime.Compare(r.RefuelDate, r.Tank.FillingDate) > 0
                 )
                 .OrderByDescending(r => r.RefuelDate)
                 .ProjectTo<RefuelingDto>(_mapper.ConfigurationProvider)
