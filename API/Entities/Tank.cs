@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace API.Entities
@@ -18,6 +19,6 @@ namespace API.Entities
 
         public float FuelAmount { get; set; }
 
-        //fillingDate
+        public DateTime FillingDate { get; set; } = DateTime.Now;
     }
 }

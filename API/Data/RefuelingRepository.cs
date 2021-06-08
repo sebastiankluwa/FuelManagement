@@ -32,7 +32,9 @@ namespace API.Data
         public async Task<IEnumerable<RefuelingDto>> GetCurrentRefuelingsByTankIdAsync(int id)
         {
             return await context.Refuelings
-                .Where(r => r.TankId == id)
+                .Where(r => r.TankId == id
+                    
+                )
                 .OrderByDescending(r => r.RefuelDate)
                 .ProjectTo<RefuelingDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
