@@ -76,7 +76,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Refueling>> GetRefuelingById(int id)
+        public async Task<ActionResult<RefuelingDto>> GetRefuelingById(int id)
         {
 
             return await _unitOfWork.RefuelingRepository.GetRefuelingByIdAsync(id);

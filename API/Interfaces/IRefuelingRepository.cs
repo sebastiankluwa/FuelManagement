@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using API.DTOs;
 using API.Entities;
 
 namespace API.Interfaces
@@ -8,7 +9,7 @@ namespace API.Interfaces
     {
         Task<IEnumerable<Refueling>> GetRefuelingsAsync();
 
-        Task<Refueling> GetRefuelingByIdAsync(int id);
+        Task<RefuelingDto> GetRefuelingByIdAsync(int id);
 
         Task<IEnumerable<Refueling>> GetRefuelingsByUserIdAsync(int id);
 
