@@ -29,6 +29,15 @@ namespace API.Data
                 .SingleOrDefaultAsync();
         }
 
+        public async Task<IEnumerable<RefuelingDto>> GetCurrentRefuelingsByTankIdAsync(int id)
+        {
+            return await context.Refuelings
+                .Where(r => r.TankId == id)
+                .OrderByDescending(r => r.RefuelDate)
+                .ProjectTo<RefuelingDto>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<RefuelingDto>> GetRefuelingsByUserIdAsync(int id)
         {
             return await context.Refuelings
@@ -56,5 +65,7 @@ namespace API.Data
             Refueling refueling = context.Refuelings.Find(id);
             context.Refuelings.Remove(refueling);
         }
+
+        
     }
 }

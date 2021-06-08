@@ -76,6 +76,14 @@ namespace API.Controllers
             return Ok(refuelings);
         }
 
+        [HttpGet("tank/{id}")]
+        public async Task<ActionResult<IEnumerable<RefuelingDto>>> GetCurrentRefuelingsByTank(int id)
+        {
+            var refuelings = await _unitOfWork.RefuelingRepository.GetCurrentRefuelingsByTankIdAsync(id);
+
+            return Ok(refuelings);
+        }
+
         [HttpGet("{id}", Name = "GetRefueling")]
         public async Task<ActionResult<RefuelingDto>> GetRefuelingById(int id)
         {
