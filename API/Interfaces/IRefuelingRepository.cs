@@ -7,11 +7,11 @@ namespace API.Interfaces
 {
     public interface IRefuelingRepository
     {
-        Task<IEnumerable<Refueling>> GetRefuelingsAsync();
+        Task<IEnumerable<RefuelingDto>> GetRefuelingsAsync();
 
         Task<RefuelingDto> GetRefuelingByIdAsync(int id);
 
-        Task<IEnumerable<Refueling>> GetRefuelingsByUserIdAsync(int id);
+        Task<IEnumerable<RefuelingDto>> GetRefuelingsByUserIdAsync(int id);
 
         void AddRefueling(Refueling refueling);
 

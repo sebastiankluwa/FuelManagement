@@ -29,18 +29,20 @@ namespace API.Data
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Refueling>> GetRefuelingsByUserIdAsync(int id)
+        public async Task<IEnumerable<RefuelingDto>> GetRefuelingsByUserIdAsync(int id)
         {
             return await context.Refuelings
                 .Where(r => r.AppUserId == id)
-                .OrderBy(r => r.RefuelDate)
-                .ToListAsync();//project to refuelingdto (mapper)
+                .OrderByDescending(r => r.RefuelDate)
+                .ProjectTo<RefuelingDto>(_mapper.ConfigurationProvider)
+                .ToListAsync();
         }
 
-        public async Task<IEnumerable<Refueling>> GetRefuelingsAsync()
+        public async Task<IEnumerable<RefuelingDto>> GetRefuelingsAsync()
         {
             return await context.Refuelings
-                .OrderBy(r => r.RefuelDate)
+                .OrderByDescending(r => r.RefuelDate)
+                .ProjectTo<RefuelingDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
         }
 

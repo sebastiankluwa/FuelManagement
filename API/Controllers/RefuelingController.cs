@@ -46,6 +46,7 @@ namespace API.Controllers
 
             if(await _unitOfWork.Complete()) 
             {
+        
                 var refuelingDto = new RefuelingDto
                 {
                     RefuelingId = refueling.RefuelingId,
@@ -75,7 +76,7 @@ namespace API.Controllers
             return Ok(refuelings);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetRefueling")]
         public async Task<ActionResult<RefuelingDto>> GetRefuelingById(int id)
         {
 
