@@ -15,5 +15,7 @@ namespace API.Entities
         public string Model { get; set; }
 
         public float Mileage { get; set; }
+
+        public float FuelAmount { get; set; }
     }
 }
