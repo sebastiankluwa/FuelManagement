@@ -15,7 +15,7 @@ namespace API.Data
             this.context = context;
         }
 
-        public IRefuelingRepository RefuelingRepository => new RefuelingRepository(context, _mapper);
+        public IRefuelingRepository RefuelingRepository => new RefuelingRepository(context, _mapper, this);
         public ITankRepository TankRepository => new TankRepository(context);
         public IVehicleRepository VehicleRepository => new VehicleRepository(context);
         public IUserRepository UserRepository => new UserRepository(context);

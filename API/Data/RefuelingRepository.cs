@@ -15,9 +15,11 @@ namespace API.Data
     {
         private readonly DataContext context;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork unitOfWork;
 
-        public RefuelingRepository(DataContext context, IMapper mapper)
+        public RefuelingRepository(DataContext context, IMapper mapper, IUnitOfWork unitOfWork)
         {
+            this.unitOfWork = unitOfWork;
             _mapper = mapper;
             this.context = context;
         }
@@ -60,6 +62,16 @@ namespace API.Data
 
         public void AddRefueling(Refueling refueling)
         {
+            var tank = refueling.Tank;
+            var vehicle = refueling.Vehicle;
+
+            tank.FuelAmount = tank.FuelAmount - refueling.FuelAmount;
+            unitOfWork.TankRepository.Update(tank);
+
+            vehicle.FuelAmount = refueling.FuelAmount;
+            vehicle.Mileage = refueling.Mileage;
+            unitOfWork.VehicleRepository.UpdateVehicle(vehicle);
+
             context.Refuelings.Add(refueling);
         }
 
@@ -69,6 +81,6 @@ namespace API.Data
             context.Refuelings.Remove(refueling);
         }
 
-        
+
     }
 }

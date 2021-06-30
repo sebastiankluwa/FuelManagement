@@ -5,6 +5,7 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,45 +15,46 @@ namespace API.Controllers
     public class RefuelingController : BaseApiController
     {
         private readonly IUnitOfWork _unitOfWork;
-        public RefuelingController(IUnitOfWork unitOfWork)
+        private readonly IMapper mapper;
+        public RefuelingController(IUnitOfWork unitOfWork, IMapper mapper)
         {
+            this.mapper = mapper;
             _unitOfWork = unitOfWork;
         }
 
         [HttpPost]
         public async Task<ActionResult<RefuelingDto>> AddRefueling(AddRefuelingDto addRefuelingDto)
         {
-            var username = User.FindFirst(ClaimTypes.Name)?.Value;
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
-            var refueller = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
             var vehicle = await _unitOfWork.VehicleRepository.GetVehicleByIdAsync(addRefuelingDto.VehicleId);
             var tank = await _unitOfWork.TankRepository.GetTankByIdAsync(addRefuelingDto.TankId);
 
-            if(vehicle == null || tank == null) return NotFound();
+            if (vehicle == null || tank == null) return NotFound();
 
-            if(vehicle.Mileage > addRefuelingDto.Mileage)
-                return BadRequest("Reversing the milleage is illegal!");
+            if (vehicle.Mileage > addRefuelingDto.Mileage)
+                return BadRequest("Mileage has to be more or equal to the last mileage");
+
+            if (tank.FuelAmount < addRefuelingDto.FuelAmount)
+                return BadRequest("Tank doesn't store such an amount of fuel");
+
 
             var refueling = new Refueling
             {
-                AppUser = refueller,
+                AppUserId = userId,
+                VehicleId = addRefuelingDto.VehicleId,
+                TankId = addRefuelingDto.TankId,
                 Vehicle = vehicle,
                 Tank = tank,
                 Mileage = addRefuelingDto.Mileage,
                 FuelAmount = addRefuelingDto.FuelAmount,
             };
 
-            tank.FuelAmount = tank.FuelAmount - refueling.FuelAmount;
-            _unitOfWork.TankRepository.Update(tank);
-
-            vehicle.FuelAmount = refueling.FuelAmount;
-            _unitOfWork.VehicleRepository.UpdateVehicle(vehicle);
-
             _unitOfWork.RefuelingRepository.AddRefueling(refueling);
 
-            if(await _unitOfWork.Complete()) 
+            if (await _unitOfWork.Complete())
             {
-        
+
                 var refuelingDto = new RefuelingDto
                 {
                     RefuelingId = refueling.RefuelingId,
@@ -64,7 +66,7 @@ namespace API.Controllers
                     FuelAmount = refueling.FuelAmount
                 };
 
-                return Ok(refuelingDto);
+                return CreatedAtRoute("GetRefueling", new { id = refueling.RefuelingId }, refuelingDto);
             }
 
             return BadRequest("Failed to refuel!");
@@ -75,7 +77,7 @@ namespace API.Controllers
         {
             var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
 
-            if(user == null) return BadRequest("User not found");
+            if (user == null) return BadRequest("User not found");
 
             var refuelings = await _unitOfWork.RefuelingRepository.GetRefuelingsByUserIdAsync(user.Id);
 
@@ -108,7 +110,7 @@ namespace API.Controllers
         [HttpDelete("{refuelingId}")]
         public async Task<ActionResult> RemoveRefueling(int refuelingId)
         {
-            
+
             _unitOfWork.RefuelingRepository.RemoveRefueling(refuelingId);
 
             if (await _unitOfWork.Complete()) return Ok();

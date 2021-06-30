@@ -10,6 +10,7 @@ namespace API.Helpers
         {
             CreateMap<Refueling, RefuelingDto>();
             CreateMap<AppUser, UserDto>();
+
         }
     }
 }
