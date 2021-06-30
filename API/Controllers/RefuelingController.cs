@@ -45,7 +45,7 @@ namespace API.Controllers
             tank.FuelAmount = tank.FuelAmount - refueling.FuelAmount;
             _unitOfWork.TankRepository.Update(tank);
 
-            vehicle.FuelAmount = vehicle.FuelAmount + refueling.FuelAmount;
+            vehicle.FuelAmount = refueling.FuelAmount;
             _unitOfWork.VehicleRepository.UpdateVehicle(vehicle);
 
             _unitOfWork.RefuelingRepository.AddRefueling(refueling);

@@ -14,5 +14,6 @@ namespace API.DTOs
         public float Mileage { get; set; }
 
         public float FuelAmount { get; set; }
+
     }
 }
